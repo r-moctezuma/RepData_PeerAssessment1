@@ -120,8 +120,7 @@ Make a panel plot containing a time series plot (i.e. 𝚝𝚢𝚙𝚎 = "𝚕")
 
 
 ```r
-library(lattice)
-xyplot(steps ~ interval | weekend, data = new_activity)
+ggplot(data = new_activity, aes(x=interval, y=steps)) + stat_summary(fun.y = mean, geom = 'line', col = 'black') + facet_grid(weekend ~.)
 ```
 
 ![](PA1_template_files/figure-html/weekends-plot-1.png)<!-- -->

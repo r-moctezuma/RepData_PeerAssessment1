@@ -186,8 +186,7 @@ new_median_steps &lt;- median(new_tot_steps_day$total_steps)</code></pre>
 <p>Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.</p>
 <pre class="r"><code>new_activity$weekend &lt;- as.factor(ifelse(weekdays(new_activity$date) %in% c(&#39;Saturday&#39;,&#39;Sunday&#39;), &#39;weekend&#39;, &#39;weekday&#39;))</code></pre>
 <p>Make a panel plot containing a time series plot (i.e. 𝚝𝚢𝚙𝚎 = “𝚕”) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.</p>
-<pre class="r"><code>library(lattice)
-xyplot(steps ~ interval | weekend, data = new_activity)</code></pre>
+<pre class="r"><code>ggplot(data = new_activity, aes(x=interval, y=steps)) + stat_summary(fun.y = mean, geom = &#39;line&#39;, col = &#39;black&#39;) + facet_grid(weekend ~.)</code></pre>
 <p><img src="PA1_template_files/figure-html/weekends-plot-1.png" /><!-- --></p>
 </div>
 
